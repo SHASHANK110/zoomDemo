@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <script>
+      const users = {
+        user1: {
+          name: "Shashank Upadhayay",
+          role: "Software Engineer | Designer",
+          image: "https://dummyimage.com/100",
+          linkedin: "#",
+          twitter: "#",
+        },
+        user2: {
+          name: "Vikas",
+          role: "Software Engineer | Blogger",
+          image: "https://dummyimage.com/100",
+          linkedin: "#",
+          twitter: "#",
+        },
+      };
+
+      function loadUserProfile() {
+        const params = new URLSearchParams(window.location.search);
+        const userId = params.get("id");
+        const user = users[userId] || users["user1"]; // Default to user1 if ID is invalid
+
+        document.getElementById("profile-img").src = user.image;
+        document.getElementById("profile-name").textContent = user.name;
+        document.getElementById("profile-role").textContent = user.role;
+        document.getElementById("linkedin-link").href = user.linkedin;
+        document.getElementById("twitter-link").href = user.twitter;
+      }
+    </script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .profile-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 300px;
+      }
+      .profile-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      .profile-card h2 {
+        margin: 10px 0;
+      }
+      .profile-card p {
+        color: gray;
+      }
+      .social-links a {
+        margin: 10px;
+        text-decoration: none;
+        color: #0073b1;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+  <body onload="loadUserProfile()">
+    <div class="profile-card">
+      <img id="profile-img" src="" alt="User Profile Picture" />
+      <h2 id="profile-name"></h2>
+      <p id="profile-role"></p>
+      <div class="social-links">
+        <a id="linkedin-link" href="#">🔗 LinkedIn</a>
+        <a id="twitter-link" href="#">🐦 Twitter</a>
+      </div>
+    </div>
+  </body>
+</html>
